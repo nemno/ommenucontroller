@@ -96,7 +96,13 @@
 
 -(void)scrollViewDidEndDecelerating:(UIScrollView *)_scrollView
 {
-    [selectedScreenShotImageView removeFromSuperview];
+    
+    for (UIView *imageView in self.view.subviews) {
+        
+        if ([imageView isKindOfClass:[UIImageView class]]) {
+            [imageView removeFromSuperview];
+        }
+    }
     
     CGFloat offsetX = _scrollView.contentOffset.x;
     NSNumber *offsetNumber = [NSNumber numberWithFloat:offsetX];
@@ -132,20 +138,27 @@
     
     NSLog(@"nullpoint: %f", nullPoint);
     
+    NSNumber *offsetNumber = [NSNumber numberWithFloat:scrollView.contentOffset.x];
+    
+    
     if (scrollView.contentOffset.x >= nullPoint) {
         
-        if (scrollView.contentOffset.x - nullPoint < 14.0f) {
-            selectedScreenShotImageView.frame = CGRectMake(CGRectGetMinX(selectedScreenShotImageView.frame) + (scrollView.contentOffset.x * 0.5), CGRectGetMinY(selectedScreenShotImageView.frame) + (scrollView.contentOffset.x * 0.5), CGRectGetWidth(selectedScreenShotImageView.frame) - (scrollView.contentOffset.x * 1), CGRectGetHeight(selectedScreenShotImageView.frame) - (scrollView.contentOffset.x * 1));
+        if ([offsetNumber intValue] % 44 < 14) {
+            selectedScreenShotImageView.frame = CGRectMake(CGRectGetMinX(selectedScreenShotImageView.frame) + ((scrollView.contentOffset.x - nullPoint) * 0.5), CGRectGetMinY(selectedScreenShotImageView.frame) + ((scrollView.contentOffset.x - nullPoint) * 0.5), CGRectGetWidth(selectedScreenShotImageView.frame) - ((scrollView.contentOffset.x - nullPoint) * 1), CGRectGetHeight(selectedScreenShotImageView.frame) - ((scrollView.contentOffset.x - nullPoint) * 1));
             
-        } else if(scrollView.contentOffset.x - nullPoint < 30.0f) {
-            selectedScreenShotImageView.frame = CGRectMake(CGRectGetMinX(selectedScreenShotImageView.frame) - (scrollView.contentOffset.x * 1), CGRectGetMinY(selectedScreenShotImageView.frame), CGRectGetWidth(selectedScreenShotImageView.frame), CGRectGetHeight(selectedScreenShotImageView.frame));
+        } else if([offsetNumber intValue] % 44 > 14 && [offsetNumber intValue] % 44 < 30) {
+            selectedScreenShotImageView.frame = CGRectMake(CGRectGetMinX(selectedScreenShotImageView.frame) - ((scrollView.contentOffset.x - nullPoint) * 1), CGRectGetMinY(selectedScreenShotImageView.frame), CGRectGetWidth(selectedScreenShotImageView.frame), CGRectGetHeight(selectedScreenShotImageView.frame));
             
         } else {
+            
+            
+            
             
         }
         
     } else {
         
+                
     }
     
 }
