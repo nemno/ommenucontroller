@@ -7,6 +7,7 @@
 //
 
 #import "OMMenuController.h"
+#import <QuartzCore/QuartzCore.h>
 
 @interface OMMenuController ()
 
@@ -35,9 +36,7 @@
         self.view.backgroundColor = [UIColor blueColor];
         
         self.viewControllers = _viewControllers;
-        
-        ///TODO - generate viewcontroller titles array
-        
+                
         NSMutableArray *titlesMutableArray = [NSMutableArray array];
         
         int i = 0;
@@ -54,7 +53,26 @@
         self.menuPickerView = [[OMMenuControllerPickerView alloc] initWithTitles: titlesArray];
         self.menuPickerView.delegate = self;
         [self setSelectedIndex:0];
-        [self.view addSubview:self.menuPickerView];
+        [self.view addSubview: self.menuPickerView];
+        
+        NSMutableArray *screenShotsMutableArray = [NSMutableArray array];
+        
+        for (UIViewController *viewController in self.viewControllers) {
+        
+            UIGraphicsBeginImageContext(viewController.view.bounds.size);
+            
+            [viewController.view.layer renderInContext:UIGraphicsGetCurrentContext()];
+            
+            UIImage *viewImage = UIGraphicsGetImageFromCurrentImageContext();
+            UIGraphicsEndImageContext();
+            
+            [screenShotsMutableArray addObject:viewImage];
+            
+        }
+        
+        self.screenShotsArray = [NSArray arrayWithArray: screenShotsMutableArray];
+        
+        self.menuPickerView.scrollView.delegate = self;
         
     }
     return self;
@@ -73,6 +91,41 @@
     // Dispose of any resources that can be recreated.
 }
 
+#pragma mark - UIScrollViewDelegate methods
+
+-(void)scrollViewDidEndDecelerating:(UIScrollView *)_scrollView
+{
+    CGFloat offsetX = _scrollView.contentOffset.x;
+    NSNumber *offsetNumber = [NSNumber numberWithFloat:offsetX];
+    
+    float selectedFloatValue = [offsetNumber floatValue] / 44.0f;
+    
+    NSNumber *selectedFloatNumber = [NSNumber numberWithFloat: selectedFloatValue];
+    
+    self.selectedIndex = [selectedFloatNumber integerValue];    
+}
+
+-(void)scrollViewWillBeginDragging:(UIScrollView *)scrollView
+{
+    for (UIViewController *vc in self.viewControllers) {
+        [vc.view removeFromSuperview];
+    }
+    
+    selectedScreenShotImageView = [[UIImageView alloc] initWithImage: [self.screenShotsArray objectAtIndex: self.selectedIndex]];
+    
+    selectedScreenShotImageView.frame = self.view.bounds;
+    
+    [self.view addSubview: selectedScreenShotImageView];
+    
+    [self.view bringSubviewToFront: self.menuPickerView];
+}
+
+-(void)scrollViewDidScroll:(UIScrollView *)scrollView
+{
+    selectedScreenShotImageView.frame = CGRectMake(CGRectGetMinX(selectedScreenShotImageView.frame), CGRectGetMinY(selectedScreenShotImageView.frame), CGRectGetWidth(selectedScreenShotImageView.frame) - (scrollView.contentOffset.x * 3), CGRectGetHeight(selectedScreenShotImageView.frame) - (scrollView.contentOffset.x * 3));
+}
+
+
 #pragma mark - OMMenuControllerPickerViewDelegate methods
 
 -(void)selectedIndexChangedInPickerView:(OMMenuControllerPickerView *)pickerView
@@ -85,9 +138,9 @@
     
     selectedIndex = _selectedIndex;
     
-    for (UIViewController *vc in self.viewControllers) {
-        [vc.view removeFromSuperview];
-    }
+//    for (UIViewController *vc in self.viewControllers) {
+//        [vc.view removeFromSuperview];
+//    }
     
     UIViewController *selectedViewController = [self.viewControllers objectAtIndex: self.selectedIndex];
     
@@ -97,5 +150,7 @@
     
     [self.view bringSubviewToFront: self.menuPickerView];
 }
+
+
 
 @end

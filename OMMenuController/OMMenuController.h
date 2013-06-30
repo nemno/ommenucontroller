@@ -9,11 +9,15 @@
 #import <UIKit/UIKit.h>
 #import "OMMenuControllerPickerView.h"
 
-@interface OMMenuController : UIViewController <OMMenuControllerPickerViewDelegate>
+@interface OMMenuController : UIViewController <OMMenuControllerPickerViewDelegate, UIScrollViewDelegate>
+{
+    UIImageView *selectedScreenShotImageView;
+}
 
 @property (nonatomic, retain) NSArray* viewControllers;
 @property (nonatomic, retain) OMMenuControllerPickerView *menuPickerView;
 @property (nonatomic) NSInteger selectedIndex;
+@property (nonatomic, retain) NSArray *screenShotsArray;
 
 - (id)initWithViewControllers: (NSArray*) _viewControllers;
 

@@ -35,7 +35,7 @@
         self.backgroundColor = [UIColor redColor];
         
         self.scrollView = [[UIScrollView alloc] initWithFrame: CGRectMake((320.0f - 44.0f) / 2.0f, 0.0f, 44.0f, 44.0f)];
-        self.scrollView.delegate = self;
+//        self.scrollView.delegate = self.delegate;
         self.scrollView.clipsToBounds = NO;
         
         OMMenuControllerPickerScrollViewEnhancer *enhancer = [[OMMenuControllerPickerScrollViewEnhancer alloc] initWithFrame:self.bounds];
@@ -81,6 +81,11 @@
     self.selectedIndex = [selectedFloatNumber integerValue];
     
     [self.delegate selectedIndexChangedInPickerView:self];
+}
+
+-(void)scrollViewDidScroll:(UIScrollView *)scrollView
+{
+//    [self.delegate pickersScrollViewDidScrollInPickerView:self];
 }
 
 /*

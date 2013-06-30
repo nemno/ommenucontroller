@@ -22,9 +22,11 @@
     NSMutableArray *tempArray = [NSMutableArray array];
     
     for (int i = 0; i < 3; i++) {
+    
         UIViewController *viewController = [[UIViewController alloc] init];
         viewController.title = [NSString stringWithFormat:@"%d", i + 1];
         [tempArray addObject:viewController];
+        
     }
     
     NSArray *viewControllersArray = [NSArray arrayWithArray:tempArray];

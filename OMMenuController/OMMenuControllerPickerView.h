@@ -20,7 +20,7 @@
 
 @property (nonatomic, retain) UIScrollView *scrollView;
 @property NSInteger selectedIndex;
-@property id<OMMenuControllerPickerViewDelegate> delegate;
+@property id<OMMenuControllerPickerViewDelegate, UIScrollViewDelegate> delegate;
 
 - (id)initWithTitles: (NSArray*) _titles;
 
