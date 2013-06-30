@@ -51,6 +51,7 @@
         NSArray *titlesArray = [NSArray arrayWithArray: titlesMutableArray];
         
         self.menuPickerView = [[OMMenuControllerPickerView alloc] initWithTitles: titlesArray];
+        self.menuPickerView.alpha = 0.6f;
         self.menuPickerView.delegate = self;
         [self setSelectedIndex:0];
         [self.view addSubview: self.menuPickerView];
@@ -130,14 +131,19 @@
     CGFloat nullPoint = self.selectedIndex * 44.0f;
     
     NSLog(@"nullpoint: %f", nullPoint);
-
     
-    if (scrollView.contentOffset.x - nullPoint < 14.0f) {
-        selectedScreenShotImageView.frame = CGRectMake(CGRectGetMinX(selectedScreenShotImageView.frame) + (scrollView.contentOffset.x * 0.5), CGRectGetMinY(selectedScreenShotImageView.frame) + (scrollView.contentOffset.x * 0.5), CGRectGetWidth(selectedScreenShotImageView.frame) - (scrollView.contentOffset.x * 1), CGRectGetHeight(selectedScreenShotImageView.frame) - (scrollView.contentOffset.x * 1));
-
-    } else if(scrollView.contentOffset.x - nullPoint < 30.0f) {
-        selectedScreenShotImageView.frame = CGRectMake(CGRectGetMinX(selectedScreenShotImageView.frame) - (scrollView.contentOffset.x * 1), CGRectGetMinY(selectedScreenShotImageView.frame), CGRectGetWidth(selectedScreenShotImageView.frame), CGRectGetHeight(selectedScreenShotImageView.frame));
-
+    if (scrollView.contentOffset.x >= nullPoint) {
+        
+        if (scrollView.contentOffset.x - nullPoint < 14.0f) {
+            selectedScreenShotImageView.frame = CGRectMake(CGRectGetMinX(selectedScreenShotImageView.frame) + (scrollView.contentOffset.x * 0.5), CGRectGetMinY(selectedScreenShotImageView.frame) + (scrollView.contentOffset.x * 0.5), CGRectGetWidth(selectedScreenShotImageView.frame) - (scrollView.contentOffset.x * 1), CGRectGetHeight(selectedScreenShotImageView.frame) - (scrollView.contentOffset.x * 1));
+            
+        } else if(scrollView.contentOffset.x - nullPoint < 30.0f) {
+            selectedScreenShotImageView.frame = CGRectMake(CGRectGetMinX(selectedScreenShotImageView.frame) - (scrollView.contentOffset.x * 1), CGRectGetMinY(selectedScreenShotImageView.frame), CGRectGetWidth(selectedScreenShotImageView.frame), CGRectGetHeight(selectedScreenShotImageView.frame));
+            
+        } else {
+            
+        }
+        
     } else {
         
     }
