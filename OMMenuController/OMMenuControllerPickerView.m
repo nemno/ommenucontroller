@@ -34,7 +34,7 @@
         
         self.backgroundColor = [UIColor redColor];
         
-        self.scrollView = [[UIScrollView alloc] initWithFrame: CGRectMake((320.0f - 44.0f) / 2.0f, 0.0f, 44.0f, 44.0f)];
+        self.scrollView = [[UIScrollView alloc] initWithFrame: CGRectMake((320.0f - 80.0f) / 2.0f, 0.0f, 80.0f, 44.0f)];
 //        self.scrollView.delegate = self.delegate;
         self.scrollView.clipsToBounds = NO;
         
@@ -44,7 +44,7 @@
         
         int i = 0;
         for (NSString *titleString in _titles) {
-            UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0.0f + (i * 44.0f), 0.0f, 44.0f, 44.0f)];
+            UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0.0f + (i * 80.0f), 0.0f, 80.0f, 44.0f)];
             label.backgroundColor = [UIColor clearColor];
             label.textColor = [UIColor whiteColor];
             label.textAlignment = NSTextAlignmentCenter;
@@ -53,12 +53,12 @@
             i++;
         }
         
-        [self.scrollView setContentSize:CGSizeMake(_titles.count * 44.0f, 44.0f)];
+        [self.scrollView setContentSize:CGSizeMake(_titles.count * 80.0f, 44.0f)];
         self.scrollView.pagingEnabled = YES;
         self.scrollView.showsHorizontalScrollIndicator = NO;
         [self addSubview: self.scrollView];
         
-        OMMenuControllerPickerScrollViewEnhancer *selectionIndicatorEnhancer = [[OMMenuControllerPickerScrollViewEnhancer alloc] initWithFrame:CGRectMake((320.0f - 44.0f) / 2.0f, 0.0f, 44.0f, 44.0f)];
+        OMMenuControllerPickerScrollViewEnhancer *selectionIndicatorEnhancer = [[OMMenuControllerPickerScrollViewEnhancer alloc] initWithFrame:CGRectMake((320.0f - 80.0f) / 2.0f, 0.0f, 80.0f, 44.0f)];
         selectionIndicatorEnhancer.backgroundColor = [UIColor greenColor];
         selectionIndicatorEnhancer.alpha = 0.2f;
         selectionIndicatorEnhancer.scrollView = self.scrollView;
@@ -74,7 +74,7 @@
     CGFloat offsetX = _scrollView.contentOffset.x;
     NSNumber *offsetNumber = [NSNumber numberWithFloat:offsetX];
     
-    float selectedFloatValue = [offsetNumber floatValue] / 44.0f;
+    float selectedFloatValue = [offsetNumber floatValue] / 80.0f;
     
     NSNumber *selectedFloatNumber = [NSNumber numberWithFloat: selectedFloatValue];
     

@@ -17,6 +17,10 @@
 @synthesize viewControllers;
 @synthesize menuPickerView;
 @synthesize selectedIndex;
+@synthesize screenShotsScrollView;
+@synthesize menuButton;
+@synthesize screenShotsArray;
+
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -54,6 +58,8 @@
         self.menuPickerView.alpha = 0.6f;
         self.menuPickerView.delegate = self;
         [self setSelectedIndex:0];
+        
+        self.menuPickerView.frame = CGRectMake(0.0f, CGRectGetMinY(self.menuPickerView.frame) + 44.0f, CGRectGetWidth(self.menuPickerView.frame), 44.0f);
         [self.view addSubview: self.menuPickerView];
         
         NSMutableArray *screenShotsMutableArray = [NSMutableArray array];
@@ -70,12 +76,41 @@
             [screenShotsMutableArray addObject:viewImage];
             
         }
-        
-        self.screenShotsArray = [NSArray arrayWithArray: screenShotsMutableArray];
-        
+                
         self.menuPickerView.scrollView.delegate = self;
         
+        self.screenShotsScrollView = [[UIScrollView alloc] initWithFrame: CGRectMake(0.0f, 0.0f, 320.0f, CGRectGetHeight(self.view.frame) - 44.0f)];
+        self.screenShotsScrollView.pagingEnabled = YES;
+        self.screenShotsScrollView.backgroundColor = [UIColor clearColor];
+        self.screenShotsScrollView.userInteractionEnabled = NO;
+        self.screenShotsScrollView.showsHorizontalScrollIndicator = NO;
+        
+        self.screenShotsArray = [NSMutableArray array];
+        
+        i = 0;
+        for (UIImage *screenImage in screenShotsMutableArray) {
+            UIImageView *scImageView = [[UIImageView alloc] initWithImage: screenImage];
+            scImageView.frame = CGRectMake( i * 320.0f + 15.0f, 15.0f, 290.0f, CGRectGetHeight(self.screenShotsScrollView.frame) - 30.0f);
+            [self.screenShotsScrollView addSubview: scImageView];
+            [self.screenShotsArray addObject:scImageView];
+            i++;
+        }
+        
+        self.screenShotsScrollView.contentSize = CGSizeMake(i * 320.0f, CGRectGetHeight(self.screenShotsScrollView.frame));
+        self.screenShotsScrollView.hidden = YES;
+        
+        [self.view addSubview: self.screenShotsScrollView];
+        
+        self.menuButton = [UIButton buttonWithType: UIButtonTypeCustom];
+        self.menuButton.frame = CGRectMake(280.0f, 20.0f, 44.0f, 44.0f);
+        self.menuButton.backgroundColor = [UIColor purpleColor];
+        [self.menuButton addTarget:self action:@selector(menuButtonTouched) forControlEvents:UIControlEventTouchUpInside];
+        [self.view addSubview: self.menuButton];
+        
+        menuIsVisible = NO;
+        
     }
+    
     return self;
 }
 
@@ -107,7 +142,7 @@
     CGFloat offsetX = _scrollView.contentOffset.x;
     NSNumber *offsetNumber = [NSNumber numberWithFloat:offsetX];
     
-    float selectedFloatValue = [offsetNumber floatValue] / 44.0f;
+    float selectedFloatValue = [offsetNumber floatValue] / 80.0f;
     
     NSNumber *selectedFloatNumber = [NSNumber numberWithFloat: selectedFloatValue];
     
@@ -116,53 +151,13 @@
 
 -(void)scrollViewWillBeginDragging:(UIScrollView *)scrollView
 {
-    for (UIViewController *vc in self.viewControllers) {
-        [vc.view removeFromSuperview];
-    }
     
-    selectedScreenShotImageView = [[UIImageView alloc] initWithImage: [self.screenShotsArray objectAtIndex: self.selectedIndex]];
-    
-    selectedScreenShotImageView.frame = self.view.bounds;
-    
-    [self.view addSubview: selectedScreenShotImageView];
-    
-    [self.view bringSubviewToFront: self.menuPickerView];
 }
 
--(void)scrollViewDidScroll:(UIScrollView *)scrollView
+-(void)scrollViewDidScroll:(UIScrollView *)_scrollView
 {
-    
-    NSLog(@"scrollview: %f", scrollView.contentOffset.x);
-    
-    CGFloat nullPoint = self.selectedIndex * 44.0f;
-    
-    NSLog(@"nullpoint: %f", nullPoint);
-    
-    NSNumber *offsetNumber = [NSNumber numberWithFloat:scrollView.contentOffset.x];
-    
-    
-    if (scrollView.contentOffset.x >= nullPoint) {
-        
-        if ([offsetNumber intValue] % 44 < 14) {
-            selectedScreenShotImageView.frame = CGRectMake(CGRectGetMinX(selectedScreenShotImageView.frame) + ((scrollView.contentOffset.x - nullPoint) * 0.5), CGRectGetMinY(selectedScreenShotImageView.frame) + ((scrollView.contentOffset.x - nullPoint) * 0.5), CGRectGetWidth(selectedScreenShotImageView.frame) - ((scrollView.contentOffset.x - nullPoint) * 1), CGRectGetHeight(selectedScreenShotImageView.frame) - ((scrollView.contentOffset.x - nullPoint) * 1));
-            
-        } else if([offsetNumber intValue] % 44 > 14 && [offsetNumber intValue] % 44 < 30) {
-            selectedScreenShotImageView.frame = CGRectMake(CGRectGetMinX(selectedScreenShotImageView.frame) - ((scrollView.contentOffset.x - nullPoint) * 1), CGRectGetMinY(selectedScreenShotImageView.frame), CGRectGetWidth(selectedScreenShotImageView.frame), CGRectGetHeight(selectedScreenShotImageView.frame));
-            
-        } else {
-            
-            
-            
-            
-        }
-        
-    } else {
-        
-                
-    }
-    
+    [self.screenShotsScrollView setContentOffset: CGPointMake(_scrollView.contentOffset.x * 4, self.screenShotsScrollView.contentOffset.y)];
 }
-
 
 #pragma mark - OMMenuControllerPickerViewDelegate methods
 
@@ -179,16 +174,89 @@
 //    for (UIViewController *vc in self.viewControllers) {
 //        [vc.view removeFromSuperview];
 //    }
-    
-    UIViewController *selectedViewController = [self.viewControllers objectAtIndex: self.selectedIndex];
-    
-    selectedViewController.view.frame = self.view.bounds;
-    
-    [self.view addSubview: selectedViewController.view];
-    
-    [self.view bringSubviewToFront: self.menuPickerView];
+//    
+//    UIViewController *selectedViewController = [self.viewControllers objectAtIndex: self.selectedIndex];
+//    
+//    selectedViewController.view.frame = self.view.bounds;
+//    
+//    [self.view addSubview: selectedViewController.view];
+//    
+//    [self.view bringSubviewToFront: self.menuPickerView];
+//    [self.view bringSubviewToFront: self.menuButton];
 }
 
+#pragma mark - UIButton methods
 
 
+- (void)menuButtonTouched
+{
+    self.view.userInteractionEnabled = NO;
+    
+    for (UIViewController *vc in self.viewControllers) {
+        [vc.view removeFromSuperview];
+    }
+    
+    if (!menuIsVisible) {
+        
+        UIImageView *tempImageView = [self.screenShotsArray objectAtIndex: self.selectedIndex];
+        
+        CGRect tempFrame = tempImageView.frame;
+        
+        UIGraphicsBeginImageContext(tempImageView.bounds.size);
+        
+        [tempImageView.layer renderInContext:UIGraphicsGetCurrentContext()];
+        
+        UIImage *viewImage = UIGraphicsGetImageFromCurrentImageContext();
+        UIGraphicsEndImageContext();
+        
+        UIImageView *newImageView = [[UIImageView alloc] initWithImage: viewImage];
+        
+        newImageView.frame = CGRectMake(CGRectGetMinX(tempImageView.frame) - 15.0f, CGRectGetMinY(tempImageView.frame) - 15.0f, CGRectGetWidth(tempImageView.frame) + 30.0f, CGRectGetHeight(tempImageView.frame) + 30.0f);
+        
+        [tempImageView removeFromSuperview];
+        
+        [self.screenShotsScrollView addSubview: newImageView];
+        
+        [self.screenShotsArray replaceObjectAtIndex: self.selectedIndex withObject: newImageView];
+        
+        self.screenShotsScrollView.hidden = NO;
+        
+        [UIView animateWithDuration:0.4f animations:^{
+            self.menuPickerView.frame = CGRectMake(0.0f, CGRectGetMinY(self.menuPickerView.frame) - 44.0f, CGRectGetWidth(self.menuPickerView.frame), 44.0f);
+            
+            newImageView.frame = tempFrame;
+            
+        } completion:^(BOOL finished) {
+            self.view.userInteractionEnabled = YES;
+            menuIsVisible = !menuIsVisible;
+        }];
+    } else {
+        
+        UIImageView *tempImageView = [self.screenShotsArray objectAtIndex: self.selectedIndex];
+        CGRect tempFrame = tempImageView.frame;
+
+        [UIView animateWithDuration:0.4f animations:^{
+            self.menuPickerView.frame = CGRectMake(0.0f, CGRectGetMinY(self.menuPickerView.frame) + 44.0f, CGRectGetWidth(self.menuPickerView.frame), 44.0f);
+            tempImageView.frame = CGRectMake(CGRectGetMinX(tempImageView.frame) - 15.0f, CGRectGetMinY(tempImageView.frame) - 15.0f, CGRectGetWidth(tempImageView.frame) + 30.0f, CGRectGetHeight(tempImageView.frame) + 30.0f);
+            
+        } completion:^(BOOL finished) {
+            
+            tempImageView.frame = tempFrame;
+            self.view.userInteractionEnabled = YES;
+            self.screenShotsScrollView.hidden = YES;
+            menuIsVisible = !menuIsVisible;
+            
+            UIViewController *selectedViewController = [self.viewControllers objectAtIndex: self.selectedIndex];
+            
+            selectedViewController.view.frame = self.view.bounds;
+            
+            [self.view addSubview: selectedViewController.view];
+            
+            [self.view bringSubviewToFront: self.screenShotsScrollView];
+            [self.view bringSubviewToFront: self.menuPickerView];
+            [self.view bringSubviewToFront: self.menuButton];
+        }];
+    }
+        
+}
 @end

@@ -12,12 +12,18 @@
 @interface OMMenuController : UIViewController <OMMenuControllerPickerViewDelegate, UIScrollViewDelegate>
 {
     UIImageView *selectedScreenShotImageView;
+    
+    CGFloat nullPoint;
+    
+    BOOL menuIsVisible;
 }
 
 @property (nonatomic, retain) NSArray* viewControllers;
 @property (nonatomic, retain) OMMenuControllerPickerView *menuPickerView;
 @property (nonatomic) NSInteger selectedIndex;
-@property (nonatomic, retain) NSArray *screenShotsArray;
+@property (nonatomic, retain) UIScrollView *screenShotsScrollView;
+@property (nonatomic, retain) UIButton *menuButton;
+@property (nonatomic, retain) NSMutableArray *screenShotsArray;
 
 - (id)initWithViewControllers: (NSArray*) _viewControllers;
 
