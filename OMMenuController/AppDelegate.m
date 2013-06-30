@@ -8,7 +8,7 @@
 
 #import "AppDelegate.h"
 
-#import "ViewController.h"
+#import "OMMenuController.h"
 
 @implementation AppDelegate
 
@@ -16,7 +16,20 @@
 {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
-    self.viewController = [[ViewController alloc] initWithNibName:@"ViewController" bundle:nil];
+    
+    //viewcontrollers
+    
+    NSMutableArray *tempArray = [NSMutableArray array];
+    
+    for (int i = 0; i < 3; i++) {
+        UIViewController *viewController = [[UIViewController alloc] init];
+        viewController.title = [NSString stringWithFormat:@"%d", i + 1];
+        [tempArray addObject:viewController];
+    }
+    
+    NSArray *viewControllersArray = [NSArray arrayWithArray:tempArray];
+    
+    self.viewController = [[OMMenuController alloc] initWithViewControllers: viewControllersArray];
     self.window.rootViewController = self.viewController;
     [self.window makeKeyAndVisible];
     return YES;

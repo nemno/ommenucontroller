@@ -16,8 +16,10 @@
 		5A08FA3D17803E5F006F59C6 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 5A08FA3C17803E5F006F59C6 /* Default.png */; };
 		5A08FA3F17803E5F006F59C6 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5A08FA3E17803E5F006F59C6 /* Default@2x.png */; };
 		5A08FA4117803E5F006F59C6 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5A08FA4017803E5F006F59C6 /* Default-568h@2x.png */; };
-		5A08FA4417803E5F006F59C6 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A08FA4317803E5F006F59C6 /* ViewController.m */; };
-		5A08FA4717803E5F006F59C6 /* ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5A08FA4517803E5F006F59C6 /* ViewController.xib */; };
+		5A08FA4F17803EB7006F59C6 /* OMMenuController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A08FA4E17803EB7006F59C6 /* OMMenuController.m */; };
+		5A08FA521780408B006F59C6 /* UIWindow+RESideMenuExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A08FA511780408B006F59C6 /* UIWindow+RESideMenuExtensions.m */; };
+		5A08FA5517804180006F59C6 /* OMMenuControllerPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A08FA541780417F006F59C6 /* OMMenuControllerPickerView.m */; };
+		5A9B6DAF17806B5900B40A2B /* OMMenuControllerPickerScrollViewEnhancer.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A9B6DAE17806B5900B40A2B /* OMMenuControllerPickerScrollViewEnhancer.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,9 +36,14 @@
 		5A08FA3C17803E5F006F59C6 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		5A08FA3E17803E5F006F59C6 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		5A08FA4017803E5F006F59C6 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
-		5A08FA4217803E5F006F59C6 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		5A08FA4317803E5F006F59C6 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
-		5A08FA4617803E5F006F59C6 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ViewController.xib; sourceTree = "<group>"; };
+		5A08FA4D17803EB6006F59C6 /* OMMenuController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OMMenuController.h; sourceTree = "<group>"; };
+		5A08FA4E17803EB7006F59C6 /* OMMenuController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OMMenuController.m; sourceTree = "<group>"; };
+		5A08FA501780408B006F59C6 /* UIWindow+RESideMenuExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIWindow+RESideMenuExtensions.h"; sourceTree = "<group>"; };
+		5A08FA511780408B006F59C6 /* UIWindow+RESideMenuExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIWindow+RESideMenuExtensions.m"; sourceTree = "<group>"; };
+		5A08FA531780417F006F59C6 /* OMMenuControllerPickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OMMenuControllerPickerView.h; sourceTree = "<group>"; };
+		5A08FA541780417F006F59C6 /* OMMenuControllerPickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OMMenuControllerPickerView.m; sourceTree = "<group>"; };
+		5A9B6DAD17806B5900B40A2B /* OMMenuControllerPickerScrollViewEnhancer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OMMenuControllerPickerScrollViewEnhancer.h; sourceTree = "<group>"; };
+		5A9B6DAE17806B5900B40A2B /* OMMenuControllerPickerScrollViewEnhancer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OMMenuControllerPickerScrollViewEnhancer.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -85,9 +92,14 @@
 			children = (
 				5A08FA3917803E5F006F59C6 /* AppDelegate.h */,
 				5A08FA3A17803E5F006F59C6 /* AppDelegate.m */,
-				5A08FA4217803E5F006F59C6 /* ViewController.h */,
-				5A08FA4317803E5F006F59C6 /* ViewController.m */,
-				5A08FA4517803E5F006F59C6 /* ViewController.xib */,
+				5A08FA4D17803EB6006F59C6 /* OMMenuController.h */,
+				5A08FA4E17803EB7006F59C6 /* OMMenuController.m */,
+				5A08FA531780417F006F59C6 /* OMMenuControllerPickerView.h */,
+				5A08FA541780417F006F59C6 /* OMMenuControllerPickerView.m */,
+				5A08FA501780408B006F59C6 /* UIWindow+RESideMenuExtensions.h */,
+				5A08FA511780408B006F59C6 /* UIWindow+RESideMenuExtensions.m */,
+				5A9B6DAD17806B5900B40A2B /* OMMenuControllerPickerScrollViewEnhancer.h */,
+				5A9B6DAE17806B5900B40A2B /* OMMenuControllerPickerScrollViewEnhancer.m */,
 				5A08FA3117803E5F006F59C6 /* Supporting Files */,
 			);
 			path = OMMenuController;
@@ -162,7 +174,6 @@
 				5A08FA3D17803E5F006F59C6 /* Default.png in Resources */,
 				5A08FA3F17803E5F006F59C6 /* Default@2x.png in Resources */,
 				5A08FA4117803E5F006F59C6 /* Default-568h@2x.png in Resources */,
-				5A08FA4717803E5F006F59C6 /* ViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -175,7 +186,10 @@
 			files = (
 				5A08FA3717803E5F006F59C6 /* main.m in Sources */,
 				5A08FA3B17803E5F006F59C6 /* AppDelegate.m in Sources */,
-				5A08FA4417803E5F006F59C6 /* ViewController.m in Sources */,
+				5A08FA4F17803EB7006F59C6 /* OMMenuController.m in Sources */,
+				5A08FA521780408B006F59C6 /* UIWindow+RESideMenuExtensions.m in Sources */,
+				5A08FA5517804180006F59C6 /* OMMenuControllerPickerView.m in Sources */,
+				5A9B6DAF17806B5900B40A2B /* OMMenuControllerPickerScrollViewEnhancer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -188,14 +202,6 @@
 				5A08FA3417803E5F006F59C6 /* en */,
 			);
 			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
-		5A08FA4517803E5F006F59C6 /* ViewController.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				5A08FA4617803E5F006F59C6 /* en */,
-			);
-			name = ViewController.xib;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -226,7 +232,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 			};
@@ -250,7 +256,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
@@ -298,6 +304,7 @@
 				5A08FA4C17803E5F006F59C6 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
