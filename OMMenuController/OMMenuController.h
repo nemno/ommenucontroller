@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "OMMenuControllerPickerView.h"
+#import "OMMenuButton.h"
 
 @interface OMMenuController : UIViewController <OMMenuControllerPickerViewDelegate, UIScrollViewDelegate>
 {
@@ -22,7 +23,7 @@
 @property (nonatomic, retain) OMMenuControllerPickerView *menuPickerView;
 @property (nonatomic) NSInteger selectedIndex;
 @property (nonatomic, retain) UIScrollView *screenShotsScrollView;
-@property (nonatomic, retain) UIButton *menuButton;
+@property (nonatomic, retain) OMMenuButton *menuButton;
 @property (nonatomic, retain) NSMutableArray *screenShotsArray;
 
 - (id)initWithViewControllers: (NSArray*) _viewControllers;

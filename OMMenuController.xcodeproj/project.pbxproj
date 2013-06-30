@@ -19,6 +19,7 @@
 		5A08FA4F17803EB7006F59C6 /* OMMenuController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A08FA4E17803EB7006F59C6 /* OMMenuController.m */; };
 		5A08FA5517804180006F59C6 /* OMMenuControllerPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A08FA541780417F006F59C6 /* OMMenuControllerPickerView.m */; };
 		5A9B6DAF17806B5900B40A2B /* OMMenuControllerPickerScrollViewEnhancer.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A9B6DAE17806B5900B40A2B /* OMMenuControllerPickerScrollViewEnhancer.m */; };
+		5AEFB1F51780CD23005DAF99 /* OMMenuButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AEFB1F41780CD23005DAF99 /* OMMenuButton.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -41,6 +42,8 @@
 		5A08FA541780417F006F59C6 /* OMMenuControllerPickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OMMenuControllerPickerView.m; sourceTree = "<group>"; };
 		5A9B6DAD17806B5900B40A2B /* OMMenuControllerPickerScrollViewEnhancer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OMMenuControllerPickerScrollViewEnhancer.h; sourceTree = "<group>"; };
 		5A9B6DAE17806B5900B40A2B /* OMMenuControllerPickerScrollViewEnhancer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OMMenuControllerPickerScrollViewEnhancer.m; sourceTree = "<group>"; };
+		5AEFB1F31780CD23005DAF99 /* OMMenuButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OMMenuButton.h; sourceTree = "<group>"; };
+		5AEFB1F41780CD23005DAF99 /* OMMenuButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OMMenuButton.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -95,6 +98,8 @@
 				5A08FA541780417F006F59C6 /* OMMenuControllerPickerView.m */,
 				5A9B6DAD17806B5900B40A2B /* OMMenuControllerPickerScrollViewEnhancer.h */,
 				5A9B6DAE17806B5900B40A2B /* OMMenuControllerPickerScrollViewEnhancer.m */,
+				5AEFB1F31780CD23005DAF99 /* OMMenuButton.h */,
+				5AEFB1F41780CD23005DAF99 /* OMMenuButton.m */,
 				5A08FA3117803E5F006F59C6 /* Supporting Files */,
 			);
 			path = OMMenuController;
@@ -184,6 +189,7 @@
 				5A08FA4F17803EB7006F59C6 /* OMMenuController.m in Sources */,
 				5A08FA5517804180006F59C6 /* OMMenuControllerPickerView.m in Sources */,
 				5A9B6DAF17806B5900B40A2B /* OMMenuControllerPickerScrollViewEnhancer.m in Sources */,
+				5AEFB1F51780CD23005DAF99 /* OMMenuButton.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -79,7 +79,7 @@
                 
         self.menuPickerView.scrollView.delegate = self;
         
-        self.screenShotsScrollView = [[UIScrollView alloc] initWithFrame: CGRectMake(0.0f, 0.0f, 320.0f, CGRectGetHeight(self.view.frame) - 44.0f)];
+        self.screenShotsScrollView = [[UIScrollView alloc] initWithFrame: CGRectMake(0.0f, 0.0f, 320.0f, CGRectGetHeight(self.view.frame))];
         self.screenShotsScrollView.pagingEnabled = YES;
         self.screenShotsScrollView.backgroundColor = [UIColor clearColor];
         self.screenShotsScrollView.userInteractionEnabled = NO;
@@ -101,13 +101,24 @@
         
         [self.view addSubview: self.screenShotsScrollView];
         
-        self.menuButton = [UIButton buttonWithType: UIButtonTypeCustom];
+        self.menuButton = [[OMMenuButton alloc] init];
         self.menuButton.frame = CGRectMake(280.0f, 20.0f, 44.0f, 44.0f);
         self.menuButton.backgroundColor = [UIColor purpleColor];
-        [self.menuButton addTarget:self action:@selector(menuButtonTouched) forControlEvents:UIControlEventTouchUpInside];
+        [self.menuButton addGestureRecognizer: [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(menuButtonTouched)]];
         [self.view addSubview: self.menuButton];
         
+        [self.menuButton addGestureRecognizer: [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(dragAndDropMenuButton)]];
+        
         menuIsVisible = NO;
+        
+        UIViewController *selectedViewController = [self.viewControllers objectAtIndex: 0];
+
+        selectedViewController.view.frame = self.view.bounds;
+
+        [self.view addSubview: selectedViewController.view];
+
+        [self.view bringSubviewToFront: self.menuPickerView];
+        [self.view bringSubviewToFront: self.menuButton];
         
     }
     
@@ -147,11 +158,6 @@
     NSNumber *selectedFloatNumber = [NSNumber numberWithFloat: selectedFloatValue];
     
     self.selectedIndex = [selectedFloatNumber integerValue];    
-}
-
--(void)scrollViewWillBeginDragging:(UIScrollView *)scrollView
-{
-    
 }
 
 -(void)scrollViewDidScroll:(UIScrollView *)_scrollView
@@ -259,4 +265,7 @@
     }
         
 }
+
+#pragma mark - Gesture Recognizer methods
+
 @end
