@@ -95,6 +95,8 @@
 
 -(void)scrollViewDidEndDecelerating:(UIScrollView *)_scrollView
 {
+    [selectedScreenShotImageView removeFromSuperview];
+    
     CGFloat offsetX = _scrollView.contentOffset.x;
     NSNumber *offsetNumber = [NSNumber numberWithFloat:offsetX];
     
@@ -122,7 +124,24 @@
 
 -(void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
-    selectedScreenShotImageView.frame = CGRectMake(CGRectGetMinX(selectedScreenShotImageView.frame), CGRectGetMinY(selectedScreenShotImageView.frame), CGRectGetWidth(selectedScreenShotImageView.frame) - (scrollView.contentOffset.x * 3), CGRectGetHeight(selectedScreenShotImageView.frame) - (scrollView.contentOffset.x * 3));
+    
+    NSLog(@"scrollview: %f", scrollView.contentOffset.x);
+    
+    CGFloat nullPoint = self.selectedIndex * 44.0f;
+    
+    NSLog(@"nullpoint: %f", nullPoint);
+
+    
+    if (scrollView.contentOffset.x - nullPoint < 14.0f) {
+        selectedScreenShotImageView.frame = CGRectMake(CGRectGetMinX(selectedScreenShotImageView.frame) + (scrollView.contentOffset.x * 0.5), CGRectGetMinY(selectedScreenShotImageView.frame) + (scrollView.contentOffset.x * 0.5), CGRectGetWidth(selectedScreenShotImageView.frame) - (scrollView.contentOffset.x * 1), CGRectGetHeight(selectedScreenShotImageView.frame) - (scrollView.contentOffset.x * 1));
+
+    } else if(scrollView.contentOffset.x - nullPoint < 30.0f) {
+        selectedScreenShotImageView.frame = CGRectMake(CGRectGetMinX(selectedScreenShotImageView.frame) - (scrollView.contentOffset.x * 1), CGRectGetMinY(selectedScreenShotImageView.frame), CGRectGetWidth(selectedScreenShotImageView.frame), CGRectGetHeight(selectedScreenShotImageView.frame));
+
+    } else {
+        
+    }
+    
 }
 
 

@@ -17,7 +17,6 @@
 		5A08FA3F17803E5F006F59C6 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5A08FA3E17803E5F006F59C6 /* Default@2x.png */; };
 		5A08FA4117803E5F006F59C6 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5A08FA4017803E5F006F59C6 /* Default-568h@2x.png */; };
 		5A08FA4F17803EB7006F59C6 /* OMMenuController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A08FA4E17803EB7006F59C6 /* OMMenuController.m */; };
-		5A08FA521780408B006F59C6 /* UIWindow+RESideMenuExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A08FA511780408B006F59C6 /* UIWindow+RESideMenuExtensions.m */; };
 		5A08FA5517804180006F59C6 /* OMMenuControllerPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A08FA541780417F006F59C6 /* OMMenuControllerPickerView.m */; };
 		5A9B6DAF17806B5900B40A2B /* OMMenuControllerPickerScrollViewEnhancer.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A9B6DAE17806B5900B40A2B /* OMMenuControllerPickerScrollViewEnhancer.m */; };
 /* End PBXBuildFile section */
@@ -38,8 +37,6 @@
 		5A08FA4017803E5F006F59C6 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		5A08FA4D17803EB6006F59C6 /* OMMenuController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OMMenuController.h; sourceTree = "<group>"; };
 		5A08FA4E17803EB7006F59C6 /* OMMenuController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OMMenuController.m; sourceTree = "<group>"; };
-		5A08FA501780408B006F59C6 /* UIWindow+RESideMenuExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIWindow+RESideMenuExtensions.h"; sourceTree = "<group>"; };
-		5A08FA511780408B006F59C6 /* UIWindow+RESideMenuExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIWindow+RESideMenuExtensions.m"; sourceTree = "<group>"; };
 		5A08FA531780417F006F59C6 /* OMMenuControllerPickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OMMenuControllerPickerView.h; sourceTree = "<group>"; };
 		5A08FA541780417F006F59C6 /* OMMenuControllerPickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OMMenuControllerPickerView.m; sourceTree = "<group>"; };
 		5A9B6DAD17806B5900B40A2B /* OMMenuControllerPickerScrollViewEnhancer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OMMenuControllerPickerScrollViewEnhancer.h; sourceTree = "<group>"; };
@@ -96,8 +93,6 @@
 				5A08FA4E17803EB7006F59C6 /* OMMenuController.m */,
 				5A08FA531780417F006F59C6 /* OMMenuControllerPickerView.h */,
 				5A08FA541780417F006F59C6 /* OMMenuControllerPickerView.m */,
-				5A08FA501780408B006F59C6 /* UIWindow+RESideMenuExtensions.h */,
-				5A08FA511780408B006F59C6 /* UIWindow+RESideMenuExtensions.m */,
 				5A9B6DAD17806B5900B40A2B /* OMMenuControllerPickerScrollViewEnhancer.h */,
 				5A9B6DAE17806B5900B40A2B /* OMMenuControllerPickerScrollViewEnhancer.m */,
 				5A08FA3117803E5F006F59C6 /* Supporting Files */,
@@ -187,7 +182,6 @@
 				5A08FA3717803E5F006F59C6 /* main.m in Sources */,
 				5A08FA3B17803E5F006F59C6 /* AppDelegate.m in Sources */,
 				5A08FA4F17803EB7006F59C6 /* OMMenuController.m in Sources */,
-				5A08FA521780408B006F59C6 /* UIWindow+RESideMenuExtensions.m in Sources */,
 				5A08FA5517804180006F59C6 /* OMMenuControllerPickerView.m in Sources */,
 				5A9B6DAF17806B5900B40A2B /* OMMenuControllerPickerScrollViewEnhancer.m in Sources */,
 			);
